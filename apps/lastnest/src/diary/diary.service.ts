@@ -51,4 +51,8 @@ export class DiaryService {
       dateField: { $gte: startDate, $lte: endDate },
     });
   }
+
+  async updateDiary(data: CreateDiaryDTO, diaryId: string) {
+    return this.diaryModel.findByIdAndUpdate(diaryId, data);
+  }
 }

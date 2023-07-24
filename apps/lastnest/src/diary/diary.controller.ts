@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Patch,
   Post,
   Query,
@@ -14,6 +15,7 @@ import { AuthGuard } from '../auth/guards/auth-guard.guard';
 import { Roles } from '../decorators/roles.decorator';
 import { Role } from '../auth/enum/role.enum';
 import { RolesGuard } from '../auth/guards/roles.guard';
+import { updateDiaryDTO } from './dto/update-diary.dto';
 
 @Controller('diary')
 export class DiaryController {
@@ -34,10 +36,10 @@ export class DiaryController {
     return await this.diaryService.readDiary(req.user, date);
   }
 
-  @Patch('/admin/update')
+  @Patch('/admin/update/:id')
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.Admin)
-  async updateDiary() {
-    console.log('admin verification success');
+  async updateDiary(@Body() data: updateDiaryDTO, @Param('id') id: string) {
+    return this.diaryService.updateDiary(data, id);
   }
 }
