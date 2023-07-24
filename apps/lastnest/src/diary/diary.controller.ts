@@ -11,7 +11,7 @@ import {
 import { CreateDiaryDTO } from './dto/create-diary.dto';
 import { DiaryService } from './diary.service';
 import { AuthGuard } from '../auth/guards/auth-guard.guard';
-import { Roles } from '../auth/decorators/roles.decorator';
+import { Roles } from '../decorators/roles.decorator';
 import { Role } from '../auth/enum/role.enum';
 import { RolesGuard } from '../auth/guards/roles.guard';
 
@@ -35,8 +35,9 @@ export class DiaryController {
   }
 
   @Patch('/admin/update')
+  @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.Admin)
-  @UseGuards(AuthGuard)
-  @UseGuards(RolesGuard)
-  async updateDiary() {}
+  async updateDiary() {
+    console.log('admin verification success');
+  }
 }

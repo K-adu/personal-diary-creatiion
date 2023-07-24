@@ -19,7 +19,7 @@ export class AuthService {
       throw new NotFoundException();
     }
     if (user.password === password) {
-      const payload = { sub: user._id, email: user.email };
+      const payload = { sub: user._id, email: user.email, roles: user.role };
       return {
         access_token: await this.jwtService.signAsync(payload),
       };

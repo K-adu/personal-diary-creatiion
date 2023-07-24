@@ -15,9 +15,6 @@ export class Diary {
 
   @Prop({ type: Date, required: true, default: Date.now })
   dateField: Date;
-
-  @Prop({ type: String })
-  role: string;
 }
 
 export const DiarySchema = SchemaFactory.createForClass(Diary);
