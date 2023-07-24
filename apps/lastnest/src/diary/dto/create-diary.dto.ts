@@ -1,4 +1,4 @@
-import { IsString } from 'class-validator';
+import { IsString, IsOptional, IsBoolean } from 'class-validator';
 
 export class CreateDiaryDTO {
   @IsString()
@@ -6,4 +6,12 @@ export class CreateDiaryDTO {
 
   @IsString()
   description: string;
+
+  @IsOptional()
+  @IsBoolean()
+  isLocked: boolean;
+
+  @IsOptional()
+  @IsString()
+  secretKey: string;
 }

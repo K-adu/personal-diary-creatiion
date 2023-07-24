@@ -15,6 +15,12 @@ export class Diary {
 
   @Prop({ type: Date, required: true, default: Date.now })
   dateField: Date;
+
+  @Prop({ default: false })
+  isLocked: boolean;
+
+  @Prop({ default: null })
+  secretKey: string;
 }
 
 export const DiarySchema = SchemaFactory.createForClass(Diary);

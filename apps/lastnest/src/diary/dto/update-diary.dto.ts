@@ -1,4 +1,4 @@
-import { IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsOptional, IsString } from 'class-validator';
 
 export class updateDiaryDTO {
   @IsOptional()
@@ -8,4 +8,12 @@ export class updateDiaryDTO {
   @IsOptional()
   @IsString()
   description: string;
+
+  @IsOptional()
+  @IsBoolean()
+  isLocked: boolean;
+
+  @IsOptional()
+  @IsString()
+  secretKey: string;
 }

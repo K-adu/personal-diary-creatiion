@@ -24,8 +24,7 @@ export class DiaryController {
   @Post('/create')
   @UseGuards(AuthGuard)
   async createDiary(@Body() data: CreateDiaryDTO, @Request() req) {
-    const userId = req.user.sub;
-    return await this.diaryService.createDiary(data, userId);
+    return await this.diaryService.createDiary(data, req.user);
   }
 
   @Get('/read')
@@ -34,6 +33,17 @@ export class DiaryController {
     const date = new Date(query.date);
     console.log(date);
     return await this.diaryService.readDiary(req.user, date);
+  }
+
+  @Get('/read/:key')
+  @UseGuards(AuthGuard)
+  async readLockedDiary(
+    @Query() query,
+    @Request() req,
+    @Param('key') key: string,
+  ) {
+    const date = new Date(query.date);
+    return await this.diaryService.readLockedDiary(req.user, key, date);
   }
 
   @Patch('/admin/update/:id')
