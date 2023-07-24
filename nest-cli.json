@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/lastnest/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/lastnest/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/lastnest",
+  "projects": {
+    "lastnest": {
+      "type": "application",
+      "root": "apps/lastnest",
+      "entryFile": "main",
+      "sourceRoot": "apps/lastnest/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/lastnest/tsconfig.app.json"
+      }
+    },
+    "blogs": {
+      "type": "application",
+      "root": "apps/blogs",
+      "entryFile": "main",
+      "sourceRoot": "apps/blogs/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/blogs/tsconfig.app.json"
+      }
+    },
+    "auth-lib": {
+      "type": "library",
+      "root": "libs/auth-lib",
+      "entryFile": "index",
+      "sourceRoot": "libs/auth-lib/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/auth-lib/tsconfig.lib.json"
+      }
+    }
+  }
+}
