@@ -7,7 +7,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Diary } from './schema/diary.schema';
 import mongoose from 'mongoose';
 import { CreateDiaryDTO } from './dto/create-diary.dto';
-import { start } from 'repl';
+import { User } from '../user/schema/user.schema';
 
 @Injectable()
 export class DiaryService {
@@ -81,5 +81,12 @@ export class DiaryService {
     });
     console.log(diary);
     return diary;
+  }
+
+  async readAsAdmin(email: string, date: Date) {
+    const startDate = new Date(date);
+    startDate.setHours(0, 0, 0, 0);
+    const endDate = new Date(date);
+    endDate.setHours(23, 59, 59, 999);
   }
 }

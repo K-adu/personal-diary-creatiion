@@ -52,4 +52,12 @@ export class DiaryController {
   async updateDiary(@Body() data: updateDiaryDTO, @Param('id') id: string) {
     return this.diaryService.updateDiary(data, id);
   }
+
+  @Get('/admin/read/:id')
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles(Role.Admin)
+  async readAsAdmin(@Param('id') email: string, @Query() query) {
+    const date = new Date(query.date);
+    return this.diaryService.readAsAdmin(email, date);
+  }
 }
